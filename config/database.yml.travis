@@ -5,15 +5,12 @@ default: &default
 
 development:
   <<: *default
-  database: 
-  username: matthieu
-  password:
+  database: myapp_development
 
 test:
   <<: *default
-  database: myapp_test
-  username: matthieu
-  password:
+  database: travis_ci_test
+  username: postgres
 
 production:
   <<: *default
