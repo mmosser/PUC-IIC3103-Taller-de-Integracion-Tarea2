@@ -9,6 +9,7 @@ before_script:
 deploy:
   provider: heroku
   app:
-    master: tarea2-mmosser
+    master: tarea2-mmosser-production
+    develop: tarea2-mmosser-staging
   api_key:
     secure: nyjDA2TAGgjarA+hWVwQBiZwQjcTkHfNXbKvyv/ihP2Feb/8gXKPW1ABPnsyoZagMIlT0ZL6aN1SiKN6DHhxaAnwkYLcCnxqdCQqSpVSzqegRC1Tqszsdz2YfJGsYC1nyQK7otVkqLzDXm4hTA0SSs7jk7h4eWtRFy9THz/DecPMnLAKtR1vIODIoX2YlvniKx9d7O71bIxx9KLtqXQZiBHW8qsQn8RxRubSYDAtYPmGcJgSrgy2a3NYYifqvvx/L9LvAtcTo4+hTYDpgHaWRad3FnUNIHkV10N3ymXaOn9ePGKFM02F+5+WSx2/NzCnquHHkKCLWjDtSwn1PuTcQ4lhzPwAWf8ZWhw1O9WoUIZjRsl9QWus3h7TDkLA/+hlsvQYNBACxMb0unfJrqnDP+4nsd9H/EWetTRyMuiiq2bas+LNwXjtdDQT7OAanB8t9dBdBlqOh+oU9ditRaOYexLJsaHG4+TdcUJtJpvB12JPTFsF6j6aHDu96KGK6/dsdrHH91KAOUk3Uu4f9on0M4esC2Q9NWmL8BbggkdZU1rFHLk2W20fAV/BCTXLeDlXqjcWQALbgLu/jQTMyL0nFnbKTIIh1rh1TTRgvXqBvmXKNK2sOTJpnYmg0J7pKz2F/QsKBrVbcmBvmfh15IfNsUc+CiGLdnYT+NeK6M9kYkM=
