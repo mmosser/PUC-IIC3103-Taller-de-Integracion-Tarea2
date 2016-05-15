@@ -6,7 +6,17 @@ respond_to :json
 #Metodo de prueba
 def index
 		render json: 'Hola'
+
+
 end
+
+
+def testRequest
+	metadata=requestMetadata('snowy')
+	render json: metadata
+
+end
+
 
 def getMetaData
 	metadata=requestMetadata(params[:q])
