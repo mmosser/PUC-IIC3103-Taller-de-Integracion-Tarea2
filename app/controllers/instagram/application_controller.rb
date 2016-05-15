@@ -50,17 +50,15 @@ end
 
 
 
-
-
 def testRequestMetadata
-	metadata=requestMetadata('snow')
+	metadata=requestMetadata(params[:tag])
 	render json: metadata
 
 end
 
 
 def getMetaData
-	metadata=requestMetadata(params[:q])
+	metadata=requestMetadata(params[:tag])
 	render json: {
 		"metadata": metadata,
 		"posts": false,
@@ -68,7 +66,11 @@ def getMetaData
 	}
 end
 	
+def buscar
 
+
+
+end
 
 
 
