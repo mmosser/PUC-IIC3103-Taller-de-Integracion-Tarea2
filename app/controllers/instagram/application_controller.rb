@@ -34,9 +34,13 @@ def testHTTPartyWithVariable
 	render json: response
 end
 
+def testParam
+	render json: param[:q]
+end
+
 def testHTTPartyWithParam
 	access_token='2019746130.59a3f2b.86a0135240404ed5b908a14c0a2d9402'
-	tag=param[:q].to_s
+	tag=param[:q]
 
 	response=HTTParty.get("https://api.instagram.com/v1/tags/#{q}?access_token=#{access_token}")
 	render json: response
