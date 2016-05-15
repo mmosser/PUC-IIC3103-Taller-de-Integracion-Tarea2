@@ -15,6 +15,7 @@ def getMetaData
 		"posts": false,
 		"version": "1.0.0"
 	}
+end
 	
 
 
