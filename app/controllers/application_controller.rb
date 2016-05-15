@@ -8,19 +8,23 @@ class ApplicationController < ActionController::Base
 
 
 
+def testHTTParty
+	
+	#access_token='2019746130.59a3f2b.86a0135240404ed5b908a14c0a2d9402'
+	#q='snow'
+	
+	response=HTTParty.get("https://api.instagram.com/v1/tags/snow?access_token=2019746130.59a3f2b.86a0135240404ed5b908a14c0a2d9402")
+	return response["data"]
+	
+end
 
 
 def requestWebWithAuth(uri)
 	access_token='2019746130.59a3f2b.86a0135240404ed5b908a14c0a2d9402'
 
 	headers = { "Content-Type"=> "application/json; charset=utf-8" }
-	response
-  	query = Hash.new
-  	query.store("access_token",access_token)
 
-
-	#response=HTTParty.get(uri+'?access_token='+access_token)
-	response=HTTParty.get(uri, :query => query, :headers => headers)
+	response=HTTParty.get(uri+'?access_token='+access_token, :headers => headers)
 
 	if(response.code < 300)
     	  return JSON.parse(response.body)
