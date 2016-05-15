@@ -20,28 +20,36 @@ end
 
 
 def getMetadata
-	response=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}?access_token=#{params[:access_token]}")
-	
-	if(response.code < 300)
-    	render json: {
-			"metadata": {"total": response["data"]["media_count"]},
-			"posts": false,
-			"version": "1.0.0"
-		}	
-  	else
-		render json: "bad instagram request"
+	if (params[:tag]!=nil && params[:access_token]!=nil)
+		response=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}?access_token=#{params[:access_token]}")
+		if(response.code < 300)
+	    	render json: {
+	    		"code": 200,
+				"metadata": {"total": response["data"]["media_count"]},
+				"posts": false,
+				"version": "1.1.0"
+			}	
+	  	else
+			render json: "Error on instagram request. Verify that your access_token is still valid."
+		end
+	else
+		render json: {"code": 400, "description": "Your parameters are not valid. You need : tag (string), access_token (string)."
 	end
 end
 	
 def getPosts
 	#In a first time, we respond with only the last publication (count=1)
-	response=HTTParty.get("https://api.instagram.com/v1/tags/#{q}/media/recent?access_token=#{token}&count=1")
+	response=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}/media/recent?access_token=#{params[:access_token]}&count=1")
 	
 	if(response.code < 300)
     	render json: {
 			"metadata": false,
 			"posts": false,
-			"version": "1.0.0"
+
+
+
+
+			"version": "1.1.0"
 		}	
   	else
 		render json: "bad instagram request"
