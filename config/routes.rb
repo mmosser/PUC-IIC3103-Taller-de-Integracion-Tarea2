@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     match '/test' => 'application#testUri', via: :get
     match '/test2' => 'application#testHTTParty', via: :get
     match '/test3' => 'application#testHTTPartyWithVariable', via: :get
-   # match '/testParam' => 'application#testParam', via: :post
+    match '/testParam' => 'application#testParam', via: :post
     match '/testMeta' => 'application#testHTTPartyWithParam', via: :post
 
     match '/tag/metadata/snow' => 'application#testRequestMetadata', via: :get
