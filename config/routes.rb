@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
 
   root 'pages#index'
+ 
+  get 'test' => 'application#testUri'
   
 
   namespace :instagram, defaults: {format: :json} do
     root  'application#index'
-    match 'tag/metadata/snowy' => 'application#testRequest', via: :get
+    match 'tag/metadata/snow' => 'application#testRequest', via: :get
     match '/tag/metadata/:q'=> 'application#getMetadata', via: :post
   end
 

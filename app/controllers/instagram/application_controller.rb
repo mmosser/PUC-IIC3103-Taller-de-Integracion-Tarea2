@@ -12,7 +12,7 @@ end
 
 
 def testRequest
-	metadata=requestMetadata('snowy')
+	metadata=requestMetadata('snow')
 	render json: metadata
 
 end
