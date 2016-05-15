@@ -6,10 +6,10 @@ Rails.application.routes.draw do
   namespace :instagram, defaults: {format: :json} do
     root  'application#index'
     match '/tag/metadata/:id'=> 'application#getMetadata', via: :post
-    end
-
-
   end
+
+
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
