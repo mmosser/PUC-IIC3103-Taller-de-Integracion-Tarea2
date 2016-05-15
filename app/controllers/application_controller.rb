@@ -22,7 +22,7 @@ end
 
 
 def requestMetadata (q)
-	uri="https://api.instagram.com/v1/tags/"+q.to_s
+	uri="https://api.instagram.com/v1/tags/#{q}"
 	jsonResponse=requestWebWithAuth(uri)
 	if(jsonResponse==false)
     	return jsonResponse
