@@ -5,7 +5,7 @@ def initialize()
 end
 
 
-def getMetadata (q)
+def getNumberPublications (q)
 	uri=URI("https://api.instagram.com/v1/tags/#{q}")
 	jsonResponse=requestWebWithAuth(uri)
 	if(jsonResponse==false)

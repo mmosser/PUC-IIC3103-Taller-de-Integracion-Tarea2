@@ -9,7 +9,7 @@ def index
 end
 
 def getMetaData
-	metadata=Requests_instagram.new.getMetaData(params[:q])
+	metadata=Requests_instagram.new.getNumberPublications(params[:q])
 	render json: {
 		"metadata": metadata,
 		"posts": false,
