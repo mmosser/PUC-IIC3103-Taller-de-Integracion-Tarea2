@@ -9,9 +9,9 @@ class ApplicationController < ActionController::Base
 def requestWebWithAuth(uri)
 	access_token='2019746130.59a3f2b.86a0135240404ed5b908a14c0a2d9402'
 
-	headers = { "Content-Type"=> "application/json; charset=utf-8" }
+	#headers = { "Content-Type"=> "application/json; charset=utf-8" }
 
-	response=HTTParty.get(uri+'?access_token='+access_token, :headers => headers)
+	response=HTTParty.get(uri+"?access_token="+access_token)
 
 	if(response.code < 300)
     	  return JSON.parse(response.body)
@@ -22,13 +22,13 @@ end
 
 
 def requestMetadata (q)
-	uri='https://api.instagram.com/v1/tags/'+q.to_s
+	uri="https://api.instagram.com/v1/tags/"+q.to_s
 	jsonResponse=requestWebWithAuth(uri)
 	if(jsonResponse==false)
     	return jsonResponse
   	else
     	jsonResponse = jsonResponse.first
-    	metadata = {total: jsonResponse['media_count']}
+    	metadata = {total: jsonResponse["media_count"]}
 	return metadata
   end
 
