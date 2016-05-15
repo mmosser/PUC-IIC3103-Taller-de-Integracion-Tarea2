@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 def buscar(q)
 	json1=getMetaData(q)
 	#json2=getPosts(q)
-	if (json1=false)
+	if (json1==false)
 		return false
 	else
 		jsonResponse={ meta: {code: 200},
