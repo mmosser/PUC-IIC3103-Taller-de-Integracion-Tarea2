@@ -51,14 +51,13 @@ end
 
 
 def testRequestMetadata
-	jsonResponse=requestMetadata(params[:tag],params[:access_token])
+	response=requestMetadata(params[:tag],params[:access_token])
 
-
-	if(jsonResponse==false)
+	if(response==false)
     	
     	render json: "bad instagram request"
   	else
-    	render json: {"total": response["data"]}
+    	render json: {"total": response["data"][0][“media_count”]}
   	end
    	
 end
