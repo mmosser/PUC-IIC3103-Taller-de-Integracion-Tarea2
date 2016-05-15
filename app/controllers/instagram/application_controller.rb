@@ -27,13 +27,13 @@ def getMetadata
 	    		"code": 200,
 				"metadata": {"total": response["data"]["media_count"]},
 				"posts": false,
-				"version": "1.1.0"
+				"version": "1.1.1"
 			}	
 	  	else
 			render json: "Error on instagram request. Verify that your access_token is still valid."
 		end
 	else
-		render json: {"code": 400, "description": "Your parameters are not valid. You need : tag (string), access_token (string)."
+		render json: {"code": 400, "description": "Your parameters are not valid. You need : tag (string), access_token (string)."}
 	end
 end
 	
@@ -49,7 +49,7 @@ def getPosts
 
 
 
-			"version": "1.1.0"
+			"version": "1.1.1"
 		}	
   	else
 		render json: "bad instagram request"
