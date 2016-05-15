@@ -17,7 +17,7 @@ def buscar
 					 }
 		
 	end
-	redirect_to "/instagram/tag/buscar"
+	
 end
 
 
