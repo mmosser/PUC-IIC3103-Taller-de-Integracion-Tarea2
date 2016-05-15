@@ -57,19 +57,24 @@ def testRequestMetadata
     	
     	render json: "bad instagram request"
   	else
-    	render json: {"total": response["data"][0][“media_count”]}
+    	render json: {"total": response["data"]}
   	end
    	
 end
 
 
 def getMetaData
-	metadata=requestMetadata(params[:tag])
-	render json: {
-		"metadata": metadata,
-		"posts": false,
-		"version": "1.0.0"
-	}
+	response=requestMetadata(params[:tag],params[:access_token])
+	if(response==false)
+    	
+    	render json: "bad instagram request"
+  	else
+		render json: {
+			"metadata": {"total": response["data"][0][“media_count”]},
+			"posts": false,
+			"version": "1.0.0"
+		}
+	end
 end
 	
 def getPosts
