@@ -35,7 +35,10 @@ def testHTTPartyWithVariable
 end
 
 def testParam
-	render json: {tag: param[:q]}
+	render json: {
+		"validado": false,
+		"tag": params[:id]
+	}
 end
 
 def testHTTPartyWithParam
