@@ -8,11 +8,15 @@ Rails.application.routes.draw do
 
   namespace :instagram, defaults: {format: :json} do
     root  'application#index'
+    #_________________________________________________________________________
+    #some tests to develop the app:
     match '/test' => 'application#testUri', via: :get
     match '/test2' => 'application#testHTTParty', via: :get
     match '/test3' => 'application#testHTTPartyWithVariable', via: :get
     match '/testParam' => 'application#testParam', via: :post
     match '/testMeta' => 'application#testHTTPartyWithParam', via: :post
+    #__________________________________________________________________________
+    #real apis of the app:
     match '/tag/metadata' => 'application#getMetadata', via: :post
 
 
