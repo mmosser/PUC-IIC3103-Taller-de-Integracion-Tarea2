@@ -50,30 +50,19 @@ end
 
 
 
-def testRequestMetadata
-	response=requestMetadata(params[:tag],params[:access_token])
-
-	if(response==false)
-    	
-    	render json: "bad instagram request"
-  	else
-    	render json: {"total": response["data"]}
-  	end
-   	
-end
 
 
-def getMetaData
-	response=requestMetadata(params[:tag],params[:access_token])
-	if(response==false)
-    	
-    	render json: "bad instagram request"
-  	else
-		render json: {
+def getMetadata
+	response=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}?access_token=#{params[:access_token]}")
+	
+	if(response.code < 300)
+    	render json: {
 			"metadata": {"total": response["data"]},
 			"posts": false,
 			"version": "1.0.0"
-		}
+		}	
+  	else
+		render json: "bad instagram request"
 	end
 end
 	

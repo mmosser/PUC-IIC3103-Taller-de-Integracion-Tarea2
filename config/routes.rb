@@ -13,10 +13,9 @@ Rails.application.routes.draw do
     match '/test3' => 'application#testHTTPartyWithVariable', via: :get
     match '/testParam' => 'application#testParam', via: :post
     match '/testMeta' => 'application#testHTTPartyWithParam', via: :post
-    match '/tag/metadata' => 'application#testRequestMetadata', via: :post
+    match '/tag/metadata' => 'application#getMetadata', via: :post
 
-    
-   # match '/tag/metadata/:q'=> 'application#getMetadata', via: :post
+
   end
 
 
