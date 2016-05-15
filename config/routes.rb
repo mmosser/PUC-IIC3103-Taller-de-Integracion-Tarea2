@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root 'pages#index'
+  get 'instagram/tag/buscar', to: 'instagram#index'
   post 'instagram/tag/buscar', to: 'instagram#buscar'
 
   # The priority is based upon order of creation: first created -> highest priority.
