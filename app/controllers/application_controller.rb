@@ -19,7 +19,7 @@ def requestWebWithAuth(uri)
   	query.store("access_token",access_token)
 
 
-	response=HTTParty.get(uri, :query => query)
+	response=HTTParty.get(uri+'?access_token='+access_token)
 	#response=HTTParty.get(uri, :query => query, :headers => headers)
 
 	if(response.code < 300)
