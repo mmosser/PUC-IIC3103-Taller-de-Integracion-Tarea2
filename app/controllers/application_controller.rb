@@ -17,6 +17,7 @@ def buscar(q)
 							  version: "1.0.0"}
 					 }
 		return jsonResponse
+	end
 end
 
 
