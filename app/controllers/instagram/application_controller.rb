@@ -67,15 +67,17 @@ def getMetadata
 end
 	
 def getPosts
-	response=requestPosts(params[:tag],params[:access_token])
+	#In a first time, we respond with only the last publication (count=1)
+	response=HTTParty.get("https://api.instagram.com/v1/tags/#{q}/media/recent?access_token=#{token}&count=1")
 	
-	if(response==false)	
-    	render json: "bad instagram request"
-  	else
-		render json: {
+	if(response.code < 300)
+    	render json: {
 			"metadata": false,
 			"posts": false,
 			"version": "1.0.0"
+		}	
+  	else
+		render json: "bad instagram request"
 	end	
 end
 
