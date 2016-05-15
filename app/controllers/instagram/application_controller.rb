@@ -41,19 +41,27 @@ def testParam
 end
 
 def testHTTPartyWithParam
-	access_token='2019746130.59a3f2b.86a0135240404ed5b908a14c0a2d9402'
+	#access_token='2019746130.59a3f2b.86a0135240404ed5b908a14c0a2d9402'
 
 
-	response=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}?access_token=#{access_token}")
+	response=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}?access_token=#{params[:access_token]}")
 	render json: response
 end
 
 
 
 def testRequestMetadata
-	metadata=requestMetadata(params[:tag])
-	render json: metadata
+	jsonResponse=requestMetadata(params[:tag],params[:access_token])
 
+
+	if(jsonResponse==false)
+    	
+    	render json: "bad instagram request"
+  	else
+
+    	render json: {"total": response["media_count"]}
+  	end
+   	
 end
 
 
@@ -66,7 +74,9 @@ def getMetaData
 	}
 end
 	
-def buscar
+def getPosts
+	post=requestPosts(params[:tag])
+
 
 
 
