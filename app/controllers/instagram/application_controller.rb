@@ -36,14 +36,13 @@ end
 
 def testParam
 	render json: {
-		"validado": false,
-		"tag": params[:Tag]
+		"tag": params[:tag]
 	}
 end
 
 def testHTTPartyWithParam
 	access_token='2019746130.59a3f2b.86a0135240404ed5b908a14c0a2d9402'
-	tag=param[:q]
+	tag=param[:tag]
 
 	response=HTTParty.get("https://api.instagram.com/v1/tags/#{tag}?access_token=#{access_token}")
 	render json: response
