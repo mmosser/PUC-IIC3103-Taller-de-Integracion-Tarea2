@@ -1,0 +1,2 @@
+module Instagram::ApplicationHelper
+end
