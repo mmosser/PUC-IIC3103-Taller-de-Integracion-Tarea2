@@ -1,4 +1,4 @@
-require 'requests_instagram'
+
 
 class ApplicationController < ActionController::Base
   
