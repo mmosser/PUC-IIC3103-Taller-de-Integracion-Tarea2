@@ -8,15 +8,16 @@ def buscar
 	json1=getMetaData(q)
 	#json2=getPosts(q)
 	if (json1==false)
-		return false
+		@jsonResponse= false
 	else
-		jsonResponse={ meta: {code: 200},
+		@jsonResponse={ meta: {code: 200},
 				   	   data: { metadata: json1,
 					#		  posts: json2, 
 							  version: "1.0.0"}
 					 }
-		return jsonResponse
+		
 	end
+	redirect_to "/instagram/tag/buscar"
 end
 
 
