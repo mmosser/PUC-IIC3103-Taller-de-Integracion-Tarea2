@@ -37,7 +37,7 @@ end
 def testParam
 	render json: {
 		"validado": false,
-		"tag": params[:id]
+		"tag": params[:Tag]
 	}
 end
 
