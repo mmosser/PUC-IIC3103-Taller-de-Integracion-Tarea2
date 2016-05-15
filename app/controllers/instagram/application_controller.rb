@@ -57,7 +57,7 @@ def getMetadata
 	
 	if(response.code < 300)
     	render json: {
-			"metadata": {"total": response["data"]},
+			"metadata": {"total": response["data"]["media_count"]},
 			"posts": false,
 			"version": "1.0.0"
 		}	
