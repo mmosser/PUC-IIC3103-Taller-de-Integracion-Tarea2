@@ -1,8 +1,10 @@
 class InstagramController < ApplicationController
 
+def index
+end
 
-
-def buscar(q)
+def buscar
+	q=params[:tag]
 	json1=getMetaData(q)
 	#json2=getPosts(q)
 	if (json1==false)
