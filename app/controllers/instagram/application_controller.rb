@@ -58,8 +58,7 @@ def testRequestMetadata
     	
     	render json: "bad instagram request"
   	else
-
-    	render json: {"total": response["media_count"]}
+    	render json: {"total": response["data"]}
   	end
    	
 end
