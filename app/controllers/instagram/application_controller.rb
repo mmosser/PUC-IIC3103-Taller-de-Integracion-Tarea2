@@ -26,15 +26,17 @@ def getMetadata
 	    	render json: {
 				"metadata": {"total": response["data"]["media_count"]},
 				"posts": false,
-				"version": "1.2.4" }
+				"version": "1.2.4" },
+				status: 200
 				
 			
 	  	else
-			render json: response
+			render json: response, status: 400
 		end
 	else
 		render json: {"meta": {"code":400,
-			"description": "Your parameters are not valid. You need : tag (string), access_token (string)."}}
+			"description": "Your parameters are not valid. You need : tag (string), access_token (string)."}},
+			status: 400
 	end
 end
 	
