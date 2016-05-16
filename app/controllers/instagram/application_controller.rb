@@ -74,7 +74,7 @@ def getPosts
 		if(response.code < 300)
 	    	render json: {
 				"metadata": false,
-				"posts": puts hashOrganized.to_json,
+				"posts": hashOrganized.to_json.to_s,
 				"version": "2.0.3" },
 				status: 200
 	  	else
