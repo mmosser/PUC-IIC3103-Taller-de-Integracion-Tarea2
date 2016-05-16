@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class Instagram::ApplicationControllerTest < ActionController::TestCase
+
+
   test "the truth" do
     assert true
   end
@@ -23,7 +25,7 @@ class Instagram::ApplicationControllerTest < ActionController::TestCase
   end
 
 
-  test "api getMetadata param TOKEN unvalid"
+  test "api getMetadata param TOKEN unvalid" do
   	tag='snow'
   	uri="https://tarea2-mmosser-staging.herokuapp.com/instagram/tag/metadata"
 
@@ -39,7 +41,7 @@ class Instagram::ApplicationControllerTest < ActionController::TestCase
   	end
   end
 
-  test "api getMetadata param TAG unvalid"
+  test "api getMetadata param TAG unvalid" do
   	access_token='2019746130.59a3f2b.86a0135240404ed5b908a14c0a2d9402'
   	uri="https://tarea2-mmosser-staging.herokuapp.com/instagram/tag/metadata"
 
@@ -56,7 +58,7 @@ class Instagram::ApplicationControllerTest < ActionController::TestCase
   end
 
 
-  test "api getMetadata request on instagram API unvalid"
+  test "api getMetadata request on instagram API unvalid" do
   	access_token='1'
   	uri="https://tarea2-mmosser-staging.herokuapp.com/instagram/tag/metadata"
 
