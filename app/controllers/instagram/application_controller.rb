@@ -52,8 +52,8 @@ def getPosts
 
 		hashOrganized=[]
 
-
-		for i in 0..count
+		n=count-1
+		for i in 0..n
 				value=hashResponse["data"][i]	
 
 				 newHash=Hash.new
@@ -136,5 +136,42 @@ def testPosts
 	response=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}/media/recent?access_token=#{params[:access_token]}&count=1")
 	render json: response
 end
+
+
+def testPosts2
+	#we respond with only the last publication (count=1)
+	count=1
+
+	if (params[:tag]!=nil && params[:access_token]!=nil)
+		response=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}/media/recent?access_token=#{params[:access_token]}&count=#{count}")
+		hashResponse=JSON.parse(response.body)
+
+	
+
+	
+
+
+		if(response.code < 300)
+	    	render json: {
+				"metadata": false,
+				"posts": hashResponse.to_json,
+				"version": "2.0.3" },
+				status: 200
+	  	else
+			render json: response, status: 400
+		end
+	else
+		render json: {"meta": {"code":400,
+			"description": "Your parameters are not valid. You need : tag (string), access_token (string)."}},
+			status: 400
+	end
+end
+
+
+
+
+
+
+
 
 end

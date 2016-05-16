@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     match '/testParam' => 'application#testParam', via: :post
     match '/testMeta' => 'application#testHTTPartyWithParam', via: :post
     match '/testPosts' => 'application#testPosts', via: :post
+    match '/testPosts2' => 'application#testPosts2', via: :post
     #__________________________________________________________________________
     #real apis of the app:
     match '/tag/metadata' => 'application#getMetadata', via: :post
