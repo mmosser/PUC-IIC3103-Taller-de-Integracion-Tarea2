@@ -26,7 +26,7 @@ def getMetadata
 	    	render json: {
 				"metadata": {"total": response["data"]["media_count"]},
 				"posts": false,
-				"version": "1.2.4" },
+				"version": "1.2.5" },
 				status: 200
 				
 			
@@ -52,7 +52,7 @@ def getPosts
 
 
 
-			"version": "1.2.4"
+			"version": "1.2.5"
 		}	
   	else
 		render json: "bad instagram request"
