@@ -8,11 +8,11 @@ class Instagram::ApplicationControllerTest < ActionController::TestCase
   end
 
 #_____________________________________________________________________________
-#test api getMetaData
-  test "api getMetadata normal case" do
+#test api buscar
+  test "api normal case" do
   	tag_test='snow'
   	access_token_test='2019746130.59a3f2b.86a0135240404ed5b908a14c0a2d9402'
-  	uri="https://tarea2-mmosser-staging.herokuapp.com/instagram/tag/metadata"
+  	uri="https://tarea2-mmosser-staging.herokuapp.com/instagram/tag/buscar"
 
   	query = Hash.new
   	query.store('tag', tag_test)
@@ -23,16 +23,16 @@ class Instagram::ApplicationControllerTest < ActionController::TestCase
   end
 
 
-  test "api getMetadata param TOKEN unvalid" do
+  test "api param TOKEN unvalid" do
   	tag_test='snow'
-  	uri="https://tarea2-mmosser-staging.herokuapp.com/instagram/tag/metadata"
+  	uri="https://tarea2-mmosser-staging.herokuapp.com/instagram/tag/buscar"
 
   	query = Hash.new
   	query.store('tag', tag_test)
   	
 
   	response=HTTParty.post(uri, :body => query.to_json)
-  	assert true
+  	
   	#assert_response(400)
     if (response.code==400)
       assert true
@@ -41,9 +41,9 @@ class Instagram::ApplicationControllerTest < ActionController::TestCase
     end
   end
 
-  test "api getMetadata param TAG unvalid" do
+  test "api param TAG unvalid" do
   	access_token_test='2019746130.59a3f2b.86a0135240404ed5b908a14c0a2d9402'
-  	uri="https://tarea2-mmosser-staging.herokuapp.com/instagram/tag/metadata"
+  	uri="https://tarea2-mmosser-staging.herokuapp.com/instagram/tag/buscar"
 
   	query = Hash.new
   	
@@ -62,10 +62,10 @@ class Instagram::ApplicationControllerTest < ActionController::TestCase
   end
 
 
-  test "api getMetadata request on instagram API unvalid" do
+  test "api request on instagram API unvalid" do
   	tag_test='snow'
   	access_token_test='1'
-  	uri="https://tarea2-mmosser-staging.herokuapp.com/instagram/tag/metadata"
+  	uri="https://tarea2-mmosser-staging.herokuapp.com/instagram/tag/buscar"
 
   	query = Hash.new
   	query.store('tag', tag_test)

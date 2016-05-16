@@ -8,6 +8,9 @@ Rails.application.routes.draw do
 
   namespace :instagram, defaults: {format: :json} do
     root  'application#index'
+    match '/tag/buscar' => 'application#buscar', via: :post
+
+
     #_________________________________________________________________________
     #some tests to develop the app:
     match '/test' => 'application#testUri', via: :get
@@ -16,9 +19,9 @@ Rails.application.routes.draw do
     match '/testParam' => 'application#testParam', via: :post
     match '/testMeta' => 'application#testHTTPartyWithParam', via: :post
     match '/testPosts' => 'application#testPosts', via: :post
-    
+
     #__________________________________________________________________________
-    #real apis of the app:
+    #apis to get a part of the JSON response:
     match '/tag/metadata' => 'application#getMetadata', via: :post
     match '/tag/posts' => 'application#getPosts', via: :post
 
