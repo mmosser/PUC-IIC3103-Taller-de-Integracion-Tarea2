@@ -20,9 +20,7 @@ def buscar
 		#prepare the "posts"
 		response=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}/media/recent?access_token=#{params[:access_token]}&count=#{count}")
 		hashResponse=JSON.parse(response.body)
-
 		hashOrganized=[]
-
 		n=count-1
 		for i in 0..n
 				value=hashResponse["data"][i]	
@@ -37,16 +35,16 @@ def buscar
 				 	newHash.store("url", value["videos"]["standard_resolution"]["url"])
 				 end
 				 newHash.store("caption", value["caption"]["text"])
-
-				 hashOrganized.push(newHash)
+				hashOrganized.push(newHash)
 		 end
 
 		 #prepare the "metadata"
 		 response2=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}?access_token=#{params[:access_token]}")
 
+
 		if(response2.code<300)
 	    	render json: {
-				"metadata": {"total": response["data"]["media_count"]},
+				"metadata": {"total": response2["data"]["media_count"]},
 				"posts": hashOrganized.as_json,
 				"version": "3.0.1" },
 				status: 200
