@@ -22,7 +22,7 @@ end
 def getMetadata
 	if (params[:tag]!=nil && params[:access_token]!=nil)
 		response=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}?access_token=#{params[:access_token]}")
-		if(response.status < 300)
+		if(response.code < 300)
 	    	render status: 200, json: {
 				"metadata": {"total": response["data"]["media_count"]},
 				"posts": false,
@@ -40,7 +40,7 @@ def getPosts
 	#In a first time, we respond with only the last publication (count=1)
 	response=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}/media/recent?access_token=#{params[:access_token]}&count=1")
 	
-	if(response.status < 300)
+	if(response.code < 300)
     	render json: {
 			"metadata": false,
 			"posts": false,
