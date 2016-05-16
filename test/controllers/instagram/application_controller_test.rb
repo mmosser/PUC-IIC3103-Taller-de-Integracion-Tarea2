@@ -33,7 +33,7 @@ class Instagram::ApplicationControllerTest < ActionController::TestCase
 
   	query = Hash.new
   	query.store('tag', tag)
-  	query.store('acces_token', access_token)
+  	
 
   	response=HTTParty.post(uri, :body => query.to_json)
   	if (response.code==400)
@@ -48,7 +48,7 @@ class Instagram::ApplicationControllerTest < ActionController::TestCase
   	uri="https://tarea2-mmosser-staging.herokuapp.com/instagram/tag/metadata"
 
   	query = Hash.new
-  	query.store('tag', tag)
+  	
   	query.store('acces_token', access_token)
 
   	response=HTTParty.post(uri, :body => query.to_json)
@@ -61,6 +61,7 @@ class Instagram::ApplicationControllerTest < ActionController::TestCase
 
 
   test "api getMetadata request on instagram API unvalid" do
+  	tag='snow'
   	access_token='1'
   	uri="https://tarea2-mmosser-staging.herokuapp.com/instagram/tag/metadata"
 
