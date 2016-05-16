@@ -26,7 +26,7 @@ def getMetadata
 	    	render json: {
 				"metadata": {"total": response["data"]["media_count"]},
 				"posts": false,
-				"version": "2.0.0" },
+				"version": "2.0.1" },
 				status: 200
 				
 			
@@ -43,21 +43,29 @@ end
 def getPosts
 	#In a first time, we respond with only the last publication (count=1)
 	if (params[:tag]!=nil && params[:access_token]!=nil)
-		response=JSON.parse(HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}/media/recent?access_token=#{params[:access_token]}&count=1"))
-	
+		response=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}/media/recent?access_token=#{params[:access_token]}&count=1")
+		hashResponse=JSON.parse(response.body)
+
+		hashOrganized=[]
+
+		hashResponse["data"].each do |key, value|
+				 
+				 newHash=Hash.new
+				 newHash.store("tags",value["tags"])
+				 newHash.store("username",value["user"]["username"])
+				 newHash.store("likes", value["likes"]["count"])
+				 newHash.store("url", value["link"])
+				 newHash.store("caption", value["caption"]["text"])
+
+				 hashOrganized.push(newHash)
+		 end,
+
+
 		if(response.code < 300)
 	    	render json: {
 				"metadata": false,
-				"posts": response["data"].each do |key, value|
-	  						 "tags": value["tags"].each do |key2, value2|
-	  						 	value2
-	  						 end,
-	  						 "username": value["user"]["username"],
-	  						 "likes": value["likes"]["count"],
-	  						 "url": value["link"],
-	  						 "caption": value["caption"]["text"]
-						 end,
-				"version": "2.0.0" },
+				"posts": hashOrganized.to_json
+				"version": "2.0.1" },
 				status: 200
 	  	else
 			render json: response, status: 400
