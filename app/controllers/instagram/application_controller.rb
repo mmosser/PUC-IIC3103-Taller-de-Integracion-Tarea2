@@ -1,3 +1,5 @@
+require 'json'
+
 class Instagram::ApplicationController < ApplicationController
 protect_from_forgery with: :null_session
 respond_to :json
@@ -20,32 +22,70 @@ end
 
 
 def getMetadata
-	response=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}?access_token=#{params[:access_token]}")
-	
-	if(response.code < 300)
-    	render json: {
-			"metadata": {"total": response["data"]["media_count"]},
-			"posts": false,
-			"version": "1.0.0"
-		}	
-  	else
-		render json: "bad instagram request"
+	if (params[:tag]!=nil && params[:access_token]!=nil)
+		response=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}?access_token=#{params[:access_token]}")
+		if(response.code < 300)
+	    	render json: {
+				"metadata": {"total": response["data"]["media_count"]},
+				"posts": false,
+				"version": "2.0.3" },
+				status: 200
+				
+			
+	  	else
+			render json: response, status: 400
+		end
+	else
+		render json: {"meta": {"code":400,
+			"description": "Your parameters are not valid. You need : tag (string), access_token (string)."}},
+			status: 400
 	end
 end
 	
 def getPosts
-	#In a first time, we respond with only the last publication (count=1)
-	response=HTTParty.get("https://api.instagram.com/v1/tags/#{q}/media/recent?access_token=#{token}&count=1")
-	
-	if(response.code < 300)
-    	render json: {
-			"metadata": false,
-			"posts": false,
-			"version": "1.0.0"
-		}	
-  	else
-		render json: "bad instagram request"
-	end	
+	#we respond with only the three last publications (count=3)
+	count=3
+
+	if (params[:tag]!=nil && params[:access_token]!=nil)
+		response=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}/media/recent?access_token=#{params[:access_token]}&count=#{count}")
+		hashResponse=JSON.parse(response.body)
+
+		hashOrganized=[]
+
+		n=count-1
+		for i in 0..n
+				value=hashResponse["data"][i]	
+
+				 newHash=Hash.new
+				 newHash.store("tags",value["tags"])
+				 newHash.store("username",value["user"]["username"])
+				 newHash.store("likes", value["likes"]["count"])
+				 if (value["type"]=="image")
+					newHash.store("url", value["images"]["standard_resolution"]["url"])
+				 else
+				 	newHash.store("url", value["videos"]["standard_resolution"]["url"])
+				 end
+				 newHash.store("caption", value["caption"]["text"])
+
+				 hashOrganized.push(newHash)
+		 end
+
+
+		if(response.code < 300)
+	    	render json: {
+				"metadata": false,
+				"posts": hashOrganized.as_json,
+				"version": "2.0.3" },
+				status: 200
+	  	else
+			render json: {"meta": {"code":400,
+			"description": "Access_Token invalid"}}, status: 400
+		end
+	else
+		render json: {"meta": {"code":400,
+			"description": "Your parameters are not valid. You need : tag (string), access_token (string)."}},
+			status: 400
+	end
 end
 
 
@@ -91,6 +131,19 @@ def testHTTPartyWithParam
 	response=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}?access_token=#{params[:access_token]}")
 	render json: response
 end
+
+def testPosts
+
+	response=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}/media/recent?access_token=#{params[:access_token]}&count=1")
+	render json: response
+end
+
+
+
+
+
+
+
 
 
 
