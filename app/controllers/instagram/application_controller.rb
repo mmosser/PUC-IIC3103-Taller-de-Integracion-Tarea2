@@ -23,17 +23,16 @@ def getMetadata
 	if (params[:tag]!=nil && params[:access_token]!=nil)
 		response=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}?access_token=#{params[:access_token]}")
 		if(response.code < 300)
-	    	render json: {
-	    		"code": 200,
+	    	render status: 200, json: {
 				"metadata": {"total": response["data"]["media_count"]},
 				"posts": false,
-				"version": "1.2.3"
+				"version": "1.2.4"
 			}	
 	  	else
-			render json: {"code": 401, "description": "Error on instagram request. Verify that your access_token is still valid."}
+			render status: 401, json: "Error on instagram request. Verify that your access_token is still valid."
 		end
 	else
-		render json: {"code": 400, "description": "Your parameters are not valid. You need : tag (string), access_token (string)."}
+		render status: 400, json: "Your parameters are not valid. You need : tag (string), access_token (string)."
 	end
 end
 	
@@ -49,7 +48,7 @@ def getPosts
 
 
 
-			"version": "1.2.3"
+			"version": "1.2.4"
 		}	
   	else
 		render json: "bad instagram request"
