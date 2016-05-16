@@ -49,13 +49,13 @@ def getPosts
 	    	render json: {
 				"metadata": false,
 				"posts": response["data"].each do |key, value|
-	  						 {"tags": value["tags"].each do |key2, value2|
+	  						 "tags": value["tags"].each do |key2, value2|
 	  						 	value2
 	  						 end,
 	  						 "username": value["user"]["username"],
 	  						 "likes": value["likes"]["count"],
 	  						 "url": value["link"],
-	  						 "caption": value["caption"]["text"]},
+	  						 "caption": value["caption"]["text"]
 						 end,
 				"version": "2.0.0" },
 				status: 200
