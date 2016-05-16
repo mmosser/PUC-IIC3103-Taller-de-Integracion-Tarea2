@@ -26,7 +26,7 @@ def getMetadata
 	    	render json: {
 				"metadata": {"total": response["data"]["media_count"]},
 				"posts": false,
-				"version": "1.2.5" },
+				"version": "2.0.0" },
 				status: 200
 				
 			
@@ -42,21 +42,31 @@ end
 	
 def getPosts
 	#In a first time, we respond with only the last publication (count=1)
-	response=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}/media/recent?access_token=#{params[:access_token]}&count=1")
+	if (params[:tag]!=nil && params[:access_token]!=nil)
+		response=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}/media/recent?access_token=#{params[:access_token]}&count=1")
 	
-	if(response.code < 300)
-    	render json: {
-			"metadata": false,
-			"posts": false,
-
-
-
-
-			"version": "1.2.5"
-		}	
-  	else
-		render json: "bad instagram request"
-	end	
+		if(response.code < 300)
+	    	render json: {
+				"metadata": false,
+				"posts": response["data"].each do |key, value|
+	  						 {"tags": value["tags"].each do |key2, value2|
+	  						 	value2
+	  						 end,
+	  						 "username": value["user"]["username"],
+	  						 "likes": value["likes"]["count"],
+	  						 "url": value["link"],
+	  						 "caption": value["caption"]["text"]},
+						 end,
+				"version": "2.0.0" },
+				status: 200
+	  	else
+			render json: response, status: 400
+		end
+	else
+		render json: {"meta": {"code":400,
+			"description": "Your parameters are not valid. You need : tag (string), access_token (string)."}},
+			status: 400
+	end
 end
 
 

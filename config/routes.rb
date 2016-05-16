@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     #__________________________________________________________________________
     #real apis of the app:
     match '/tag/metadata' => 'application#getMetadata', via: :post
+    match '/tag/posts' => 'application#getPosts', via: :post
 
 
   end
