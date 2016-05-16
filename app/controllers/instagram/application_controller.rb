@@ -1,3 +1,5 @@
+require 'json'
+
 class Instagram::ApplicationController < ApplicationController
 protect_from_forgery with: :null_session
 respond_to :json
@@ -26,7 +28,7 @@ def getMetadata
 	    	render json: {
 				"metadata": {"total": response["data"]["media_count"]},
 				"posts": false,
-				"version": "2.0.2" },
+				"version": "2.0.3" },
 				status: 200
 				
 			
@@ -41,20 +43,28 @@ def getMetadata
 end
 	
 def getPosts
-	#In a first time, we respond with only the last publication (count=1)
+	#we respond with only the three last publications (count=3)
+	count=3
+
 	if (params[:tag]!=nil && params[:access_token]!=nil)
-		response=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}/media/recent?access_token=#{params[:access_token]}&count=1")
+		response=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}/media/recent?access_token=#{params[:access_token]}&count=#{count}")
 		hashResponse=JSON.parse(response.body)
 
 		hashOrganized=[]
 
-		hashResponse["data"].each do |key, value|
-				 
+
+		for i in 0..count
+				value=hashResponse["data"][i]	
+
 				 newHash=Hash.new
 				 newHash.store("tags",value["tags"])
 				 newHash.store("username",value["user"]["username"])
 				 newHash.store("likes", value["likes"]["count"])
-				 newHash.store("url", value["link"])
+				 if (value["type"]=="image")
+					newHash.store("url", value["images"]["standard_resolution"]["url"])
+				 else
+				 	newHash.store("url", value["videos"]["standard_resolution"]["url"])
+				 end
 				 newHash.store("caption", value["caption"]["text"])
 
 				 hashOrganized.push(newHash)
@@ -65,7 +75,7 @@ def getPosts
 	    	render json: {
 				"metadata": false,
 				"posts": hashOrganized.to_json,
-				"version": "2.0.2" },
+				"version": "2.0.3" },
 				status: 200
 	  	else
 			render json: response, status: 400
