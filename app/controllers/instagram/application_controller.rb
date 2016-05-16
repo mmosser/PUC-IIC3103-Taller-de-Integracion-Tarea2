@@ -48,7 +48,7 @@ def buscar
 	    	render json: {
 				"metadata": {"total": response2["data"]["media_count"]},
 				"posts": hashOrganized.as_json,
-				"version": "3.0.2" },
+				"version": "3.0.3" },
 				status: 200
 	  	else
 	  		#render in case access_token unvalid
