@@ -74,11 +74,12 @@ def getPosts
 		if(response.code < 300)
 	    	render json: {
 				"metadata": false,
-				"posts": hashOrganized.to_json,
+				"posts": puts hashOrganized.to_json,
 				"version": "2.0.3" },
 				status: 200
 	  	else
-			render json: response, status: 400
+			render json: {"meta": {"code":400,
+			"description": "Access_Token invalid"}}, status: 400
 		end
 	else
 		render json: {"meta": {"code":400,
@@ -138,34 +139,6 @@ def testPosts
 end
 
 
-def testPosts2
-	#we respond with only the last publication (count=1)
-	count=1
-
-	if (params[:tag]!=nil && params[:access_token]!=nil)
-		response=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}/media/recent?access_token=#{params[:access_token]}&count=#{count}")
-		hashResponse=JSON.parse(response.body)
-
-	
-
-	
-
-
-		if(response.code < 300)
-	    	render json: {
-				"metadata": false,
-				"posts": hashResponse.to_json,
-				"version": "2.0.3" },
-				status: 200
-	  	else
-			render json: response, status: 400
-		end
-	else
-		render json: {"meta": {"code":400,
-			"description": "Your parameters are not valid. You need : tag (string), access_token (string)."}},
-			status: 400
-	end
-end
 
 
 
