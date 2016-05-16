@@ -26,7 +26,7 @@ def getMetadata
 	    	render json: {
 				"metadata": {"total": response["data"]["media_count"]},
 				"posts": false,
-				"version": "2.0.1" },
+				"version": "2.0.2" },
 				status: 200
 				
 			
@@ -65,7 +65,7 @@ def getPosts
 	    	render json: {
 				"metadata": false,
 				"posts": hashOrganized.to_json,
-				"version": "2.0.1" },
+				"version": "2.0.2" },
 				status: 200
 	  	else
 			render json: response, status: 400
@@ -121,6 +121,9 @@ def testHTTPartyWithParam
 	render json: response
 end
 
+def testPosts
 
+	response=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}/media/recent?access_token=#{params[:access_token]}&count=1")
+	render json: response
 
 end

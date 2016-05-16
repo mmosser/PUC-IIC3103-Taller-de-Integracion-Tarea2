@@ -19,12 +19,12 @@ class Instagram::ApplicationControllerTest < ActionController::TestCase
   	query.store('acces_token', access_token_test)
 
   	response=HTTParty.post(uri, :body => query.to_json)
-  	assert_response(200)
-  #	if (response.code==200)
-  #		assert true
-  #	else
-  #		assert false
-  #	end
+  	#assert_response(200)
+  	if (response.code==200)
+  		assert true
+  	else
+  		assert false
+  	end
   end
 
 
@@ -39,6 +39,11 @@ class Instagram::ApplicationControllerTest < ActionController::TestCase
   	response=HTTParty.post(uri, :body => query.to_json)
   	assert true
   	#assert_response(400)
+    if (response.code==400)
+      assert true
+    else
+      assert false
+    end
   end
 
   test "api getMetadata param TAG unvalid" do
@@ -51,8 +56,13 @@ class Instagram::ApplicationControllerTest < ActionController::TestCase
 
   	response=HTTParty.post(uri, :body => query.to_json)
 
-	assert true
+	
   	#assert_response(400)
+    if (response.code==400)
+      assert true
+    else
+      assert false
+    end
   
   end
 
@@ -68,8 +78,13 @@ class Instagram::ApplicationControllerTest < ActionController::TestCase
 
   	response=HTTParty.post(uri, :body => query.to_json)
 
-  	assert true
+  	
   	#assert_response(400)
+    if (response.code==400)
+      assert true
+    else
+      assert false
+    end
   end
 
 end
