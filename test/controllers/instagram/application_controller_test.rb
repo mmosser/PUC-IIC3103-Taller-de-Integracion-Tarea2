@@ -2,11 +2,13 @@ require 'test_helper'
 
 class Instagram::ApplicationControllerTest < ActionController::TestCase
 
-
+#init test
   test "the truth" do
     assert true
   end
 
+#_____________________________________________________________________________
+#test api getMetaData
   test "api getMetadata normal case" do
   	tag='snow'
   	access_token='2019746130.59a3f2b.86a0135240404ed5b908a14c0a2d9402'
