@@ -32,11 +32,11 @@ class Instagram::ApplicationControllerTest < ActionController::TestCase
   	tag_test='snow'
   	uri="https://tarea2-mmosser-staging.herokuapp.com/instagram/tag/metadata"
 
-  	query = Hash.new
-  	query.store('tag', tag_test)
+  	query1 = Hash.new
+  	query1.store('tag', tag_test)
   	
 
-  	response=HTTParty.post(uri, :body => query.to_json)
+  	response=HTTParty.post(uri, :body => query1.to_json)
   	assert_response(400)
   end
 
@@ -44,11 +44,11 @@ class Instagram::ApplicationControllerTest < ActionController::TestCase
   	access_token_test='2019746130.59a3f2b.86a0135240404ed5b908a14c0a2d9402'
   	uri="https://tarea2-mmosser-staging.herokuapp.com/instagram/tag/metadata"
 
-  	query = Hash.new
+  	query2 = Hash.new
   	
-  	query.store('acces_token', access_token_test)
+  	query2.store('acces_token', access_token_test)
 
-  	response=HTTParty.post(uri, :body => query.to_json)
+  	response=HTTParty.post(uri, :body => query2.to_json)
 
   	assert_response(400)
   
@@ -60,11 +60,11 @@ class Instagram::ApplicationControllerTest < ActionController::TestCase
   	access_token_test='1'
   	uri="https://tarea2-mmosser-staging.herokuapp.com/instagram/tag/metadata"
 
-  	query = Hash.new
-  	query.store('tag', tag_test)
-  	query.store('acces_token', access_token_test)
+  	query3 = Hash.new
+  	query3.store('tag', tag_test)
+  	query3.store('acces_token', access_token_test)
 
-  	response=HTTParty.post(uri, :body => query.to_json)
+  	response=HTTParty.post(uri, :body => query3.to_json)
   	assert_response(400)
   end
 
