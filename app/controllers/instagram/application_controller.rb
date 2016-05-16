@@ -29,7 +29,7 @@ def getMetadata
 				"version": "1.2.4"
 			}	
 	  	else
-			render json: response
+			render status: 400, json: response
 		end
 	else
 		render status: 400, json: "Your parameters are not valid. You need : tag (string), access_token (string)."
