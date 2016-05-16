@@ -23,19 +23,18 @@ def getMetadata
 	if (params[:tag]!=nil && params[:access_token]!=nil)
 		response=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}?access_token=#{params[:access_token]}")
 		if(response.code < 300)
-	    	format.json {render json: {
+	    	render json: {
 				"metadata": {"total": response["data"]["media_count"]},
 				"posts": false,
-				"version": "1.2.4" },
-				status: 200
-			}	
+				"version": "1.2.4" }
+				
+			
 	  	else
-			format.json {render json: response, status: :unauthorized}
+			render json: response
 		end
 	else
-		format.json {render json: {"meta": {"code":400,
-			"description": "Your parameters are not valid. You need : tag (string), access_token (string)."}}, 
-			status:400}
+		render json: {"meta": {"code":400,
+			"description": "Your parameters are not valid. You need : tag (string), access_token (string)."}}
 	end
 end
 	
