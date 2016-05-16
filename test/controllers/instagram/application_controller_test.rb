@@ -19,11 +19,12 @@ class Instagram::ApplicationControllerTest < ActionController::TestCase
   	query.store('acces_token', access_token)
 
   	response=HTTParty.post(uri, :body => query.to_json)
-  	if (response.code==200)
-  		assert true
-  	else
-  		assert false
-  	end
+  	assert_response(200)
+  #	if (response.code==200)
+  #		assert true
+  #	else
+  #		assert false
+  #	end
   end
 
 
