@@ -19,7 +19,7 @@ class Instagram::ApplicationControllerTest < ActionController::TestCase
   	query.store('acces_token', access_token)
 
   	response=HTTParty.post(uri, :body => query.to_json)
-  	if (response.code==200)
+  	if (response.status==200)
   		assert true
   	else
   		assert false
@@ -36,7 +36,7 @@ class Instagram::ApplicationControllerTest < ActionController::TestCase
   	
 
   	response=HTTParty.post(uri, :body => query.to_json)
-  	if (response.code==400)
+  	if (response.status==400)
   		assert true
   	else
   		assert false
@@ -52,7 +52,7 @@ class Instagram::ApplicationControllerTest < ActionController::TestCase
   	query.store('acces_token', access_token)
 
   	response=HTTParty.post(uri, :body => query.to_json)
-  	if (response.code==400)
+  	if (response.status==400)
   		assert true
   	else
   		assert false
@@ -70,7 +70,7 @@ class Instagram::ApplicationControllerTest < ActionController::TestCase
   	query.store('acces_token', access_token)
 
   	response=HTTParty.post(uri, :body => query.to_json)
-  	if (response.code==401)
+  	if (response.status==400)
   		assert true
   	else
   		assert false
