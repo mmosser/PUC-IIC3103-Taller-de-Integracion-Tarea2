@@ -58,7 +58,7 @@ def getPosts
 				 newHash.store("caption", value["caption"]["text"])
 
 				 hashOrganized.push(newHash)
-		 end,
+		 end
 
 
 		if(response.code < 300)
