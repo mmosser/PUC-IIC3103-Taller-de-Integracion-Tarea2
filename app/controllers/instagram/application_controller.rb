@@ -125,5 +125,6 @@ def testPosts
 
 	response=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}/media/recent?access_token=#{params[:access_token]}&count=1")
 	render json: response
+end
 
 end
