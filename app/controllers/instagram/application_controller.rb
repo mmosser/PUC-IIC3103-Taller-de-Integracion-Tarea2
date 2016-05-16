@@ -43,7 +43,7 @@ end
 def getPosts
 	#In a first time, we respond with only the last publication (count=1)
 	if (params[:tag]!=nil && params[:access_token]!=nil)
-		response=HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}/media/recent?access_token=#{params[:access_token]}&count=1")
+		response=JSON.parse(HTTParty.get("https://api.instagram.com/v1/tags/#{params[:tag]}/media/recent?access_token=#{params[:access_token]}&count=1"))
 	
 		if(response.code < 300)
 	    	render json: {
