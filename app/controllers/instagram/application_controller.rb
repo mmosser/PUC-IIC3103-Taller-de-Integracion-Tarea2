@@ -29,7 +29,7 @@ def getMetadata
 				"version": "1.2.4"
 			}	
 	  	else
-			render status: 401, json: "Error on instagram request. Verify that your access_token is still valid."
+			render json: response
 		end
 	else
 		render status: 400, json: "Your parameters are not valid. You need : tag (string), access_token (string)."
