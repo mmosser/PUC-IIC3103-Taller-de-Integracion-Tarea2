@@ -25,6 +25,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'rails_12factor'
 
+gem 'coveralls', require: false
+
 gem 'responders', '~> 2.0'
 gem 'httparty'
 gem 'json'
