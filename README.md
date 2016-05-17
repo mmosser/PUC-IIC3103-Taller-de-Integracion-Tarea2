@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/mmosser/tarea2-mmosser.svg?branch=master)](https://travis-ci.org/mmosser/tarea2-mmosser)
 
-[![Coverage Status](https://coveralls.io/repos/github/mmosser/tarea2-mmosser/badge.svg?branch=develop)](https://coveralls.io/github/mmosser/tarea2-mmosser?branch=develop)
+[![Coverage Status](https://coveralls.io/repos/github/mmosser/tarea2-mmosser/badge.svg?branch=master)](https://coveralls.io/github/mmosser/tarea2-mmosser?branch=master)
 
 API
 
